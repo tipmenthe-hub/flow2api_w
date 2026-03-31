@@ -3,14 +3,12 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: flow2api
     ports:
-      - "8000:8000"
+      - "3101:8000"
     volumes:
       - ./config:/app/config
       - ./data:/app/data
     restart: unless-stopped
-
   captcha-solver:
     build:
       context: .
@@ -22,8 +20,3 @@ services:
       - flow2api
     restart: unless-stopped
     shm_size: '512m'
-    deploy:
-      replicas: 2 # 2个实例
-      resources:
-        limits:
-          memory: 1G
